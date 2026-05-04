@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Выдох</title>
+<meta name="theme-color" content="#f5ebdc">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Выдох">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/app/icon-192.png">
+<link rel="apple-touch-icon" href="assets/app/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="phone-frame">
+
+<!-- COVER -->
+<div class="scr on" data-s="welcome">
+  <div class="cv">
+    <div class="cv-noise" aria-hidden="true"></div>
+    <div class="cv-kicker">Приложение-пауза</div>
+    <div class="cv-title">Выдох</div>
+    <div class="cv-tag">Место, где можно мягко вернуться к себе</div>
+    <div class="cv-desc">Тревога, бессонница, тяжёлое утро. Открой карточку под своё состояние и начни с одного спокойного шага.</div>
+    <div class="deck-w">
+      <div class="cv-halo" aria-hidden="true"></div>
+      <div class="cv-orbit cv-orbit-1" aria-hidden="true"></div>
+      <div class="cv-orbit cv-orbit-2" aria-hidden="true"></div>
+      <div class="dk dk1"><div class="em">🌙</div><div><div class="nm">Не могу уснуть</div><div class="ds">мягкое засыпание</div></div><div class="dk-glow" aria-hidden="true"></div></div>
+      <div class="dk dk2"><div class="em">🌬️</div><div><div class="nm">Дыхание 4–7–8</div><div class="ds">за 2 мин спокойнее</div></div><div class="dk-glow" aria-hidden="true"></div></div>
+      <div class="dk dk3"><div class="em">☀️</div><div><div class="nm">Тёплое утро</div><div class="ds">старт дня без спешки</div></div><div class="dk-glow" aria-hidden="true"></div></div>
+    </div>
+    <button class="cv-btn" onclick="goMood()"><span>Начать</span><span class="cv-btn-arr" aria-hidden="true">→</span></button>
+    <div class="cv-sub">бесплатно · без регистрации</div>
+    <div class="cv-foot">Можно начать с одной карточки</div>
+  </div>
+</div>
+
+<!-- MOOD -->
+<div class="scr" data-s="mood">
+  <div class="mood-wrap">
+    <div class="mood-kicker">прямо сейчас</div>
+    <div class="mood-q">Быстрый <em>подбор</em></div>
+    <div class="mood-s">ответь на три вопроса — и я выберу одну конкретную технику</div>
+    <div class="mood-quiz">
+      <div class="mood-step">
+        <div class="mood-step-k">1 · состояние</div>
+        <div class="mood-pills">
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('feel','anxious',this)">тревожно</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('feel','sad',this)">грустно</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('feel','angry',this)">злюсь</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('feel','hard',this)">всё навалилось</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('feel','sleepy',this)">не сплю</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('feel','burnout',this)">выгорела</button>
+        </div>
+      </div>
+      <div class="mood-step">
+        <div class="mood-step-k">2 · что ждёшь от результата?</div>
+        <div class="mood-pills mood-pills-two">
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('need','calm',this)">стало тише</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('need','sleep',this)">уснуть</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('need','energy',this)">собраться</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('need','support',this)">почувствовать опору</button>
+        </div>
+      </div>
+      <div class="mood-step">
+        <div class="mood-step-k">3 · сколько есть времени?</div>
+        <div class="mood-pills mood-pills-time">
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('time','quick',this)">1 мин</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('time','soft',this)">2-5 мин</button>
+          <button type="button" class="mood-choice" onclick="setQuizAnswer('time','deep',this)">10 мин</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="mood-next" id="mood-next" onclick="completeMoodQuiz()" disabled>Подобрать технику</button>
+    <button type="button" class="mood-skip" onclick="goHome()">Пропустить</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div class="scr" data-s="home">
+  <div class="topbar">
+    <div class="tb-title tb-greet" id="home-greet-title-wrap">
+      <span id="home-greet-title">Привет</span>
+      <span class="tb-greet-ico day" id="home-greet-ico" aria-hidden="true">🌿</span>
+    </div>
+    <div class="tb-icon" onclick="goScr('journal')">♡</div>
+  </div>
+  <div class="home-wrap">
+    <div class="hero-30" onclick="goReset()">
+      <div class="hero-30-tag" id="h30-tag">программа · 30 дней</div>
+      <div class="hero-30-title" id="h30-title">Перезагрузка <em style="font-style:normal">за</em> 30 дней</div>
+      <div class="hero-30-desc" id="h30-desc">путь к себе — мягкий, постепенный, со структурой</div>
+      <div class="hero-30-progress">
+        <div class="hero-30-bar"><div class="hero-30-fill" id="h30-fill" style="width:0%"></div></div>
+        <div class="hero-30-day" id="h30-day">0 / 30</div>
+      </div>
+    </div>
+    <div class="home-flow">
+      <div class="home-band">
+        <div class="home-band-head">
+          <div class="home-band-k">быстрый вход</div>
+          <div class="home-band-title">С чего начнём?</div>
+        </div>
+        <button type="button" class="quick-pick" onclick="goMood()">
+          <span class="quick-pick-ico">✨</span>
+          <span class="quick-pick-text">
+            <span class="quick-pick-k">если не знаешь, с чего начать</span>
+            <span class="quick-pick-title">Быстрый подбор</span>
+            <span class="quick-pick-desc">три ответа — одна техника под сейчас</span>
+          </span>
+          <span class="quick-pick-arr">›</span>
+        </button>
+      </div>
+      <div class="home-band">
+        <button type="button" class="all-sections" id="home-sections-toggle" onclick="toggleHomeSections()" aria-expanded="false">
+          <span class="all-sections-ico">🗂️</span>
+            <span class="all-sections-text">
+              <span class="all-sections-k">библиотека</span>
+              <span class="all-sections-title">Все разделы</span>
+              <span class="all-sections-desc">тревожно, грустно, злюсь, выгорела и ещё</span>
+            </span>
+          <span class="all-sections-arr" id="home-sections-arr">⌄</span>
+        </button>
+        <div class="home-sections-panel" id="home-sections-panel">
+          <div id="home-sec-list"></div>
+        </div>
+      </div>
+      <div class="home-band">
+        <div class="home-band-head">
+          <div class="home-band-k">фон</div>
+          <div class="home-band-title">Звуки присутствия</div>
+        </div>
+        <div class="home-band-sub">включи один звук фоном и оставь его рядом</div>
+        <div class="sounds-row sounds-grid">
+          <div class="sound-c" onclick="toggleSound(this,'rain')">
+            <span class="sound-em sound-icon" aria-hidden="true">🌧️</span>
+            <div class="sound-l">Дождь</div>
+          </div>
+          <div class="sound-c" onclick="toggleSound(this,'fire')">
+            <span class="sound-em sound-icon" aria-hidden="true">🔥</span>
+            <div class="sound-l">Камин</div>
+          </div>
+          <div class="sound-c" onclick="toggleSound(this,'ocean')">
+            <span class="sound-em sound-icon" aria-hidden="true">🌊</span>
+            <div class="sound-l">Океан</div>
+          </div>
+          <div class="sound-c" onclick="toggleSound(this,'forest')">
+            <span class="sound-em sound-icon" aria-hidden="true">🌲</span>
+            <div class="sound-l">Лес</div>
+          </div>
+          <div class="sound-c" onclick="toggleSound(this,'birds')">
+            <span class="sound-em sound-icon" aria-hidden="true">🐦</span>
+            <div class="sound-l">Птицы</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTIONS -->
+<div class="scr" data-s="sections">
+  <div class="topbar"><div class="back" onclick="goScr('home')">‹</div><div class="tb-title">Практики</div></div>
+  <div class="sec-list"><div class="sec-lead">Выбери раздел, и внутри сразу откроются все подходящие практики.</div><div id="sec-list"></div></div>
+</div>
+
+<!-- CARDS -->
+<div class="scr" data-s="cards">
+  <div class="topbar"><div class="back" onclick="goScr('sections')">‹</div><div class="tb-title" id="ct"></div></div>
+  <div class="cg-wrap">
+    <div class="cg-softbar" aria-hidden="true"><span class="cg-soft-dot"></span><span class="cg-soft-dot"></span><span class="cg-soft-dot"></span></div>
+    <div class="cg-h" id="cg-h"></div>
+    <div class="cg-s" id="cg-s"></div>
+    <div class="cg-lead" id="cg-lead"></div>
+    <div class="card-grid" id="grid"></div>
+  </div>
+</div>
+
+<!-- CARD DETAIL (вынесено из .scr чтобы не зависеть от скролла) -->
+<div class="card-detail" id="card-detail" aria-hidden="true">
+  <article class="card-detail-sheet" role="dialog" aria-modal="true" aria-labelledby="card-detail-title">
+    <div class="card-detail-handle" aria-hidden="true"></div>
+    <div class="card-detail-top">
+      <button class="card-detail-back" type="button" onclick="closeCardDetail()">‹ назад</button>
+      <div class="card-detail-top-right">
+        <div class="card-detail-kicker" id="card-detail-kicker">тревожно</div>
+        <button class="tb-icon card-detail-fav" type="button" id="card-detail-fav" aria-label="Добавить в избранное">♡</button>
+      </div>
+    </div>
+    <div class="card-detail-icon" id="card-detail-icon" aria-hidden="true"></div>
+    <div class="card-detail-title" id="card-detail-title"></div>
+    <div class="card-detail-sub" id="card-detail-sub"></div>
+    <div class="card-detail-line" aria-hidden="true"></div>
+    <div class="card-detail-desc" id="card-detail-desc"></div>
+    <div class="card-detail-steps-label">шаги</div>
+    <div class="card-detail-steps" id="card-detail-steps"></div>
+    <div class="card-detail-meta">
+      <span class="card-detail-chip" id="card-detail-time"></span>
+      <span class="card-detail-chip" id="card-detail-kind"></span>
+    </div>
+    <div class="card-detail-actions">
+      <button class="card-detail-start" type="button" id="card-detail-start">Начать</button>
+    </div>
+  </article>
+</div>
+
+<!-- TECHNIQUE -->
+<div class="scr" data-s="tech">
+  <div class="topbar"><div class="back" onclick="goBackFromTech()">‹</div><div class="tb-title"></div><div class="tb-icon" id="fav-btn" onclick="toggleFav()">♡</div></div>
+  <div class="t-wrap">
+    <div class="t-em" id="te"></div>
+    <div class="t-t" id="tt"></div>
+    <div class="t-result-card">
+      <div class="t-result-label" id="tres-label">ещё несколько слов</div>
+      <div class="t-result-text" id="tresult"></div>
+    </div>
+    <div class="t-sup" id="tsup"></div>
+    <div id="interactive-area"></div>
+    <button class="t-btn" id="bs">Начать</button>
+    <button class="t-btn-rep" id="br" style="display:none;">Повторить</button>
+    <div id="tech-shuffle-slot"></div>
+    <div id="feedback-area"></div>
+  </div>
+</div>
+
+<!-- 30 DAYS LIST -->
+<div class="scr" data-s="reset30">
+  <div class="r30-wrap">
+    <div class="r30-hero">
+      <div class="r30-back" onclick="goScr('home')">‹</div>
+      <div class="r30-tag">программа · 30 дней</div>
+      <div class="r30-title">Перезагрузка</div>
+      <div class="r30-sub">маленький шаг меняет больше чем ожидание.</div>
+      <div class="r30-progress-card">
+        <div class="r30-pc-h">
+          <div class="r30-pc-l">твой прогресс</div>
+          <div class="r30-pc-d" id="r30-progress-text">0 из 30 дней</div>
+        </div>
+        <div class="r30-pc-bar"><div class="r30-pc-fill" id="r30-progress-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="r30-content" id="r30-content"></div>
+  </div>
+</div>
+
+<!-- DAY DETAIL -->
+<div class="scr" data-s="day">
+  <div class="day-wrap" id="day-wrap"></div>
+</div>
+
+<!-- JOURNAL -->
+<div class="scr" data-s="journal">
+  <div class="topbar"><div class="back" onclick="goScr('home')">‹</div><div class="tb-title">Моё пространство</div></div>
+  <div class="j-wrap">
+    <div class="j-stat">
+      <div class="j-stat-n" id="j-streak">0</div>
+      <div class="j-stat-l">дней заботы о себе подряд</div>
+    </div>
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab(this,'fav')">♡ Любимые</div>
+      <div class="tab" onclick="switchTab(this,'history')">⏱ История</div>
+      <div class="tab" onclick="switchTab(this,'notes')">✎ Записи</div>
+    </div>
+    <div id="j-content"></div>
+  </div>
+</div>
+
+<!-- BREATH OVERLAY -->
+<div class="b-overlay" id="bov">
+  <div class="b-big" id="bigring"></div>
+  <div class="b-st" id="bst">Вдох</div>
+  <div class="b-cnt" id="bcnt">4</div>
+  <div class="b-ph" id="bph">секунды</div>
+  <div class="b-cyc" id="bcyc">Цикл 1 из 4</div>
+  <button class="b-stop" onclick="stopBreath()">Остановить</button>
+</div>
+
+<!-- TIMER MODAL -->
+<div class="timer-modal" id="timer-modal">
+  <div class="tm-name" id="tm-name">Таймер</div>
+  <div class="tm-tip" id="tm-tip"></div>
+  <div class="tm-circle"><div class="tm-num" id="tm-num">30</div></div>
+  <button class="tm-stop" onclick="stopRitualTimer()">Остановить</button>
+</div>
+
+<!-- INPUT MODAL -->
+<div class="modal" id="input-modal">
+  <div class="modal-content">
+    <div class="modal-title" id="mi-title">Запиши</div>
+    <div class="modal-desc" id="mi-desc"></div>
+    <input class="modal-input" id="mi-input" placeholder="..."/>
+    <div class="modal-btns">
+      <button class="modal-btn modal-btn-cancel" onclick="closeInputModal()">Отмена</button>
+      <button class="modal-btn modal-btn-save" onclick="saveInputModal()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- CELEBRATION -->
+<div class="celeb" id="celeb">
+  <div class="celeb-em" id="celeb-em">🌸</div>
+  <div class="celeb-t" id="celeb-t">День завершён</div>
+  <div class="celeb-d" id="celeb-d">ты прошла ещё один шаг к себе. это много.</div>
+  <button class="celeb-btn" onclick="closeCeleb()">Спасибо</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav" id="bn">
+  <div class="bn-i on" data-nav="home" onclick="goScr('home')"><div class="bn-em">⌂</div><div class="bn-l">Главная</div></div>
+  <div class="bn-i" data-nav="reset30" onclick="goReset()"><div class="bn-em">✦</div><div class="bn-l">30 дней</div></div>
+  <div class="bn-i" data-nav="sections" onclick="goSec()"><div class="bn-em">▤</div><div class="bn-l">Разделы</div></div>
+  <div class="bn-i" data-nav="journal" onclick="goScr('journal')"><div class="bn-em">♡</div><div class="bn-l">Моё</div></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+</div>
+
+<script src="js/data/program.js"></script>
+<script src="js/data/library.js"></script>
+<script src="js/app/sounds.js"></script>
+<script src="js/app/storage.js"></script>
+<script src="js/app/state.js"></script>
+<script src="js/app/cover.js"></script>
+<script src="js/app/navigation.js"></script>
+<script src="js/app/cards.js"></script>
+<script src="js/app/mood.js"></script>
+<script src="js/app/home.js"></script>
+<script src="js/app/interactions.js"></script>
+<script src="js/app/program.js"></script>
+<script src="js/app/init.js"></script>
+<script src="js/pwa.js"></script>
+</body>
+</html>
