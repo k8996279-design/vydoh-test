@@ -24,5 +24,5 @@ function goScr(s){
   if(s==='sections'){const sl=document.getElementById('sec-list');if(sl)sl.innerHTML=renderSectionsListHTML();}
   enhanceInteractiveElements(el);
 }
-function goMood(){goScr('mood')}
-function goHome(){renderHome();goScr('home');}
+function goMood(){goScr('mood');}
+function goHome(){renderHome();goScr('home');if(typeof showInstallPill==='function')showInstallPill();}

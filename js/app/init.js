@@ -9,3 +9,4 @@ document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeCardDetail();
 updateStreak();
 renderCoverVariant();
 enhanceInteractiveElements();
+initInstallButton();
