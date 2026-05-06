@@ -1,5 +1,5 @@
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; background: #2a2520; font-family: 'Nunito', sans-serif; color: #3d2f22; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html, body { height: 100%; background: #2a2520; font-family: 'Nunito', sans-serif; color: #3d2f22; overflow: hidden; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 button { font-family: inherit; cursor: pointer; }
 [role="button"], [role="tab"] { outline: none; }
@@ -204,14 +204,14 @@ textarea:focus-visible {
 .home-header-tag { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(122, 96, 72, 0.62); margin-bottom: 6px; }
 .home-header-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 400; line-height: 1.12; color: #3a2e26; margin-bottom: 6px; }
 .home-header-title em { display: block; font-style: italic; font-size: 34px; font-weight: 400; color: #6b7d62; }
-.home-header-sub { font-size: 15px; font-weight: 400; line-height: 1.5; color: rgba(92, 70, 52, 0.68); }
+.home-header-sub { font-size: 15px; font-weight: 500; line-height: 1.5; color: rgba(92, 70, 52, 0.82); }
 .home-hero30-wrap { padding: 0 22px 4px; }
 .home-qp { padding: 0 22px 16px; }
 .home-qp-card { width: 100%; border: none; border-radius: 20px; background: linear-gradient(135deg, #f7f1e6, #ede0cc); padding: 20px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: transform 0.15s; box-shadow: 0 4px 16px rgba(92,62,32,0.08); position: relative; overflow: hidden; }
 .home-qp-card:active { transform: scale(0.98); }
 .home-qp-card-text { flex: 1; text-align: left; }
 .home-qp-card-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; color: #3a2e26; margin-bottom: 4px; }
-.home-qp-card-sub { font-size: 13px; color: rgba(100,78,58,0.65); line-height: 1.4; }
+.home-qp-card-sub { font-size: 13px; color: rgba(100,78,58,0.80); line-height: 1.4; }
 .home-qp-card-illo { width: 88px; height: 106px; flex-shrink: 0; margin: -18px -6px -18px 0; }
 .home-wrap { padding: 0 20px 90px; }
 .hero-30 { background: linear-gradient(145deg, #f7efe4 0%, #ebdcc9 56%, #ddc4a8 100%); border-radius: 22px; padding: 22px 20px; margin-bottom: 18px; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.18s; border: 1px solid rgba(210, 184, 152, 0.9); box-shadow: 0 10px 30px rgba(92, 62, 32, 0.09), inset 0 1px 0 rgba(255,255,255,0.76); }
@@ -238,9 +238,9 @@ textarea:focus-visible {
 .quick-pick:active { transform: scale(0.985); border-color: rgba(184, 155, 122, 0.9); box-shadow: 0 10px 28px rgba(92, 62, 32, 0.1), inset 0 1px 0 rgba(255,255,255,0.82); }
 .quick-pick-ico { width: 42px; height: 42px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(145deg, rgba(247,239,226,0.96), rgba(239,228,209,0.92)); color: #5c4735; font-size: 22px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.62); }
 .quick-pick-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.quick-pick-k { font-size: 11px; font-weight: 800; letter-spacing: 0; text-transform: none; color: rgba(122, 96, 72, 0.58); line-height: 1.25; }
+.quick-pick-k { font-size: 11px; font-weight: 800; letter-spacing: 0; text-transform: none; color: rgba(122, 96, 72, 0.75); line-height: 1.25; }
 .quick-pick-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #4f3928; line-height: 1.15; }
-.quick-pick-desc { font-size: 12.5px; font-weight: 700; color: rgba(122, 88, 61, 0.72); line-height: 1.35; }
+.quick-pick-desc { font-size: 13px; font-weight: 700; color: rgba(122, 88, 61, 0.85); line-height: 1.35; }
 .quick-pick-arr { color: #b89b7a; font-size: 22px; line-height: 1; padding-bottom: 2px; }
 
 .all-sections { width: 100%; border: none; border-top: 1px solid rgba(200,182,158,0.38); border-radius: 0; background: transparent; padding: 10px 2px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; color: #5c4735; box-shadow: none; transition: opacity 0.15s; }
