@@ -56,7 +56,8 @@ function renderTechShuffle() {
   if (arr.length < 2) return;
   const others = arr.map((_, i) => i).filter((i) => i !== curCardIdx);
   const pick = others[Math.floor(Math.random() * others.length)];
-  slot.innerHTML = `<button type="button" class="t-shuffle" onclick="openCard('${curSec}',${pick})">Хочется другого — покажи ещё одну</button>`;
+  const fanBtn=prevScreen==='home'?`<button type="button" class="t-shuffle" onclick="goHomeToFan()">Выбрать случайную карточку</button>`:'';
+  slot.innerHTML = `<button type="button" class="t-shuffle" onclick="openCard('${curSec}',${pick})">Хочется другого — покажи ещё одну</button>${fanBtn}`;
 }
 
 function escHtml(t) {
@@ -308,6 +309,18 @@ function openAnyCardDetail(item, el) {
     closeCardDetail();
     openCard(item.sid, item.idx, false, true, item.tone || '');
   };
+  const actions = document.querySelector('.card-detail-actions');
+  const existing = document.getElementById('card-detail-fan-btn');
+  if (existing) existing.remove();
+  if (prevScreen === 'home' && actions) {
+    const fanBtn = document.createElement('button');
+    fanBtn.id = 'card-detail-fan-btn';
+    fanBtn.type = 'button';
+    fanBtn.className = 'card-detail-fan-back';
+    fanBtn.textContent = 'Выбрать случайную карточку';
+    fanBtn.onclick = () => { closeCardDetail(); goHomeToFan(); };
+    actions.appendChild(fanBtn);
+  }
   detail.classList.add('on');
   document.querySelector('.phone-frame')?.classList.add('detail-card-open');
   document.querySelector('.scr[data-s="cards"]')?.classList.add('detail-locked');
@@ -445,7 +458,7 @@ function closeCardDetail(){
 }
 
 function renderSectionsListHTML(){
-  const row=(s)=>`<div class="sc" onclick="openSec('${s.id}')"><div class="sc-i">${s.i}</div><div class="sc-info"><div class="sc-n">${s.n}</div><div class="sc-d">${s.d}</div></div><div class="sc-arr">›</div></div>`;
+  const row=(s)=>`<div class="sc" data-sec="${s.id}" onclick="openSec('${s.id}')"><div class="sc-info"><div class="sc-n">${s.n}</div><div class="sc-d">${s.d}</div></div><div class="sc-arr">›</div></div>`;
   const rows=LIBRARY_SECTIONS.map(row).join('');
   return `<div class="sec-panel practice-panel"><div class="sec-panel-rows practice-rows">${rows}</div></div>`;
 }
@@ -458,11 +471,16 @@ function setPracticeTab(id){
   if(homeList)homeList.innerHTML=renderSectionsListHTML();
 }
 
+function renderHomeSectionsHTML(){
+  const tile=(s)=>`<div class="sc-tile" data-sec="${s.id}" onclick="openSec('${s.id}')"><div class="sc-tile-body"><div class="sc-tile-name">${s.n}</div><div class="sc-tile-desc">${s.d}</div></div><div class="sc-tile-arr">›</div></div>`;
+  return `<div class="sc-tile-grid">${LIBRARY_SECTIONS.map(tile).join('')}</div>`;
+}
+
 function renderHomeSections(){
   const panel=document.getElementById('home-sections-panel');
   const list=document.getElementById('home-sec-list');
   const toggle=document.getElementById('home-sections-toggle');
-  if(list && homeSectionsOpen)list.innerHTML=renderSectionsListHTML();
+  if(list && homeSectionsOpen)list.innerHTML=renderHomeSectionsHTML();
   if(panel)panel.classList.toggle('open',homeSectionsOpen);
   if(toggle){
     toggle.classList.toggle('open',homeSectionsOpen);
@@ -470,12 +488,33 @@ function renderHomeSections(){
   }
 }
 
+let _secScrollSaved=0;
 function toggleHomeSections(){
-  homeSectionsOpen=!homeSectionsOpen;
-  renderHomeSections();
+  const scr=document.querySelector('.scr[data-s="home"]');
+  if(homeSectionsOpen){
+    homeSectionsOpen=false;
+    renderHomeSections();
+    if(scr)scr.scrollTo({top:_secScrollSaved,behavior:'smooth'});
+  } else {
+    _secScrollSaved=scr?scr.scrollTop:0;
+    homeSectionsOpen=true;
+    renderHomeSections();
+    const toggle=document.getElementById('home-sections-toggle');
+    if(toggle){
+      setTimeout(()=>{
+        if(scr){
+          const scrRect=scr.getBoundingClientRect();
+          const toggleRect=toggle.getBoundingClientRect();
+          const relTop=toggleRect.top - scrRect.top + scr.scrollTop;
+          scr.scrollTo({top:relTop-16,behavior:'smooth'});
+        }
+      },380);
+    }
+  }
 }
 
 function goSec(){
+  prevScreen='cards';
   document.getElementById('sec-list').innerHTML=renderSectionsListHTML();
   goScr('sections');
 }

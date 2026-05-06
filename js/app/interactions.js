@@ -182,7 +182,8 @@ function startBodyScan(ia,btn){const parts=['head','neck','shoulders','chest','a
 
 function showFeedback(){
   const sh=document.getElementById('tech-shuffle-slot');if(sh)sh.innerHTML='';
-  document.getElementById('feedback-area').innerHTML=`<div class="feedback-card"><div class="feedback-q">Как ты себя чувствуешь после?</div><div class="feedback-buttons"><button class="feedback-b" onclick="rateFeedback(1)">Полегче</button><button class="feedback-b" onclick="rateFeedback(0)">Чуть-чуть</button><button class="feedback-b" onclick="rateFeedback(-1)">Пока нет</button></div></div>`;
+  const fanBtn=prevScreen==='home'?`<button type="button" class="t-shuffle" onclick="goHomeToFan()">Выбрать случайную карточку</button>`:'';
+  document.getElementById('feedback-area').innerHTML=`<div class="feedback-card"><div class="feedback-q">Как ты себя чувствуешь после?</div><div class="feedback-buttons"><button class="feedback-b" onclick="rateFeedback(1)">Полегче</button><button class="feedback-b" onclick="rateFeedback(0)">Чуть-чуть</button><button class="feedback-b" onclick="rateFeedback(-1)">Пока нет</button></div></div>${fanBtn}`;
   document.getElementById('bs').style.display='none';document.getElementById('br').style.display='block';document.getElementById('br').onclick=()=>openCard(curSec, curCardIdx, prevScreen==='day');
 }
 function rateFeedback(r){if(history.length>0)history[0].rating=r;writeStored('hist',history);document.getElementById('feedback-area').innerHTML='';toast(r>0?'Рада за тебя 🌸':r===0?'Хорошо что попробовала':'Попробуй ещё одну');}
@@ -201,10 +202,21 @@ function renderJournal(){
 }
 
 function toggleSound(el,name){
+  const volRow=document.getElementById('sound-vol-row');
+  const volSlider=document.getElementById('sound-vol-slider');
   document.querySelectorAll('.sound-c').forEach(c=>c.classList.remove('playing'));
-  if(curSound===name){stopSound();curSound=null;toast('Звук выключен');return;}
+  if(curSound===name){stopSound();curSound=null;if(volRow)volRow.classList.remove('visible');toast('Звук выключен');return;}
   stopSound();
-  try{curSoundNodes=playSound(name);curSound=name;el.classList.add('playing');toast(`играет: ${el.querySelector('.sound-l').textContent.toLowerCase()} 🌿`);}
+  try{
+    curSoundNodes=playSound(name);curSound=name;el.classList.add('playing');
+    if(volRow&&volSlider){
+      const vol=Math.round((SOUND_LIBRARY[name]?.volume??0.2)*100);
+      volSlider.value=vol;
+      volSlider.style.background=`linear-gradient(to right,#7a9870 ${vol}%,rgba(210,190,162,0.45) ${vol}%)`;
+      volRow.classList.add('visible');
+    }
+    toast(`играет: ${el.querySelector('.sound-l').textContent.toLowerCase()} 🌿`);
+  }
   catch(e){toast('звук не запустился');}
 }
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2500);}
