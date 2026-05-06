@@ -1,5 +1,5 @@
-border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; background: #2a2520; font-family: 'Nunito', sans-serif; color: #3d2f22; overflow: hidden; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: #2a2520; font-family: 'Nunito', sans-serif; color: #3d2f22; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 button { font-family: inherit; cursor: pointer; }
 [role="button"], [role="tab"] { outline: none; }
@@ -41,7 +41,7 @@ textarea:focus-visible {
 .cv-title { font-family: 'Playfair Display', serif; font-size: 92px; font-weight: 700; line-height: 0.84; color: #4a3520; letter-spacing: -0.04em; margin-bottom: 14px; position: relative; z-index: 2; font-style: italic; }
 .cv-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 25px; color: #563c28; margin-bottom: 14px; position: relative; z-index: 2; max-width: 324px; line-height: 1.14; text-shadow: 0 1px 0 rgba(255, 250, 244, 0.62); }
 .cv-desc { font-size: 15px; color: rgba(69, 50, 34, 0.78); line-height: 1.58; max-width: 330px; position: relative; z-index: 2; font-weight: 700; margin-bottom: 0; text-shadow: 0 1px 0 rgba(255, 250, 244, 0.68); }
-.deck-w { flex: 1; min-height: 240px; position: relative; margin: 18px 0 0; display: flex; align-items: center; justify-content: center; }
+.deck-w { flex: 1; min-height: 240px; max-height: 360px; position: relative; margin: 18px 0 0; display: flex; align-items: center; justify-content: center; }
 .cv-halo { position: absolute; left: 50%; top: 50%; width: 220px; height: 220px; transform: translate(-50%, -48%); border-radius: 50%; background: radial-gradient(circle, rgba(255,245,225,0.96) 0%, rgba(240,214,174,0.45) 34%, rgba(216,188,150,0.12) 56%, transparent 72%); filter: blur(2px); opacity: 0.95; z-index: 0; animation: cvHaloPulse 6.2s ease-in-out infinite; }
 .cv-orbit { position: absolute; border-radius: 50%; border: 1px solid rgba(184, 155, 122, 0.28); pointer-events: none; }
 .cv-orbit-1 { width: 250px; height: 250px; opacity: 0.48; animation: cvOrbit 18s linear infinite; }
@@ -201,7 +201,7 @@ textarea:focus-visible {
 
 /* HOME */
 .home-header { padding: 52px 22px 16px; }
-.home-header-tag { font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(122, 96, 72, 0.58); margin-bottom: 6px; }
+.home-header-tag { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(122, 96, 72, 0.62); margin-bottom: 6px; }
 .home-header-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 400; line-height: 1.12; color: #3a2e26; margin-bottom: 6px; }
 .home-header-title em { display: block; font-style: italic; font-size: 34px; font-weight: 400; color: #6b7d62; }
 .home-header-sub { font-size: 15px; font-weight: 400; line-height: 1.5; color: rgba(92, 70, 52, 0.68); }
@@ -230,7 +230,7 @@ textarea:focus-visible {
 .home-flow { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
 .home-band { padding: 0 2px; }
 .home-band-head { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
-.home-band-k { font-size: 11px; font-weight: 900; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(122, 96, 72, 0.60); }
+.home-band-k { font-size: 11px; font-weight: 900; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(122, 96, 72, 0.62); }
 .home-band-title { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.12; color: #4f3928; }
 .home-band-sub { font-size: 13px; line-height: 1.45; color: rgba(122, 88, 61, 0.76); margin-bottom: 12px; }
 
@@ -247,7 +247,7 @@ textarea:focus-visible {
 .all-sections:active { opacity: 0.7; }
 .all-sections-ico { display: none; }
 .all-sections-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.all-sections-k { font-size: 11px; font-weight: 600; color: #b09880; letter-spacing: 0.07em; text-transform: uppercase; line-height: 1; }
+.all-sections-k { font-size: 11px; font-weight: 600; color: #9a8068; letter-spacing: 0.07em; text-transform: uppercase; line-height: 1; }
 .all-sections-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; font-style: italic; color: #3a2e26; line-height: 1.1; margin-top: 3px; }
 .all-sections-desc { display: none; }
 .all-sections-arr { font-size: 16px; color: #b89b7a; transition: transform 0.25s ease; flex-shrink: 0; margin-top: 2px; }
@@ -272,7 +272,7 @@ textarea:focus-visible {
 .sc-tile[data-sec="sleep-soft"]   { border-left-color: #8878b0; }
 
 .home-band-fan { padding: 0 2px; }
-.fan-kicker { font-size: 11px; color: #b09880; text-transform: uppercase; letter-spacing: 0.07em; text-align: center; margin-bottom: 18px; }
+.fan-kicker { font-size: 11px; color: #9a8068; text-transform: uppercase; letter-spacing: 0.07em; text-align: center; margin-bottom: 18px; }
 .fan-deck { position: relative; height: 138px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 12px; }
 .fan-card { position: absolute; width: 106px; height: 124px; border-radius: 16px; border: 1px solid rgba(210,190,162,0.5); transform-origin: center bottom; box-shadow: 0 2px 10px rgba(92,62,32,0.07); }
 .fan-card-back { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(145deg, #f0e8d8, #e4d4bc); border-radius: 16px; }
@@ -285,7 +285,7 @@ textarea:focus-visible {
 .fan-c5 { background: linear-gradient(145deg, #ede5d5, #e0d0b8); transform: rotate(18deg) translateX(58px); z-index: 1; }
 .fan-card-ico { font-size: 24px; line-height: 1; margin-bottom: 5px; }
 .fan-card-name { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: #3a2e26; line-height: 1.25; }
-.fan-card-time { font-size: 11px; color: rgba(100,78,58,0.58); margin-top: 3px; }
+.fan-card-time { font-size: 11px; color: rgba(100,78,58,0.60); margin-top: 3px; }
 .fan-shuffle-btn { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; background: transparent; border: 1.5px solid rgba(107,125,98,0.38); border-radius: 99px; padding: 11px 0; font-size: 14px; color: #6b7d62; font-family: 'Playfair Display', serif; font-style: italic; cursor: pointer; transition: background 0.15s; }
 .fan-shuffle-btn:active { background: rgba(107,125,98,0.06); }
 @keyframes fanCardFlip { 0%{opacity:1;transform:rotate(0deg) scale(1)} 40%{opacity:0;transform:rotate(4deg) scale(0.88)} 70%{opacity:0;transform:rotate(-2deg) scale(0.88)} 100%{opacity:1;transform:rotate(0deg) scale(1)} }
