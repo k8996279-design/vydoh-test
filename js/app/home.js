@@ -107,7 +107,7 @@ function goHomeToFan(){
     const fan=document.querySelector('.home-band-fan');
     if(scr&&fan){
       const top=fan.offsetTop - scr.offsetTop - 20;
-      scr.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+      scr.scrollTop=Math.max(0,top);
     }
   },80);
 }
