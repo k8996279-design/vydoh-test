@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'vydoh-shell';
-const CACHE_NAME = `${CACHE_PREFIX}-v14`;
+const CACHE_NAME = `${CACHE_PREFIX}-v16`;
 const APP_SHELL = [
   './',
   './index.html',
