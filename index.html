@@ -83,14 +83,58 @@
 
 <!-- HOME -->
 <div class="scr" data-s="home">
-  <div class="topbar">
-    <div class="tb-title tb-greet" id="home-greet-title-wrap">
-      <span id="home-greet-title">Привет</span>
-      <span class="tb-greet-ico day" id="home-greet-ico" aria-hidden="true">🌿</span>
-    </div>
-    <div class="tb-icon" onclick="goScr('journal')">♡</div>
+  <div class="home-header">
+    <div class="home-header-tag" id="home-header-tag">ДОБРОЕ УТРО</div>
+    <div class="home-header-title" id="home-header-title">Мягкий старт <em>нового дня</em></div>
+    <div class="home-header-sub" id="home-header-sub">Ты уже на пути к себе.<br>Здесь можно выдохнуть и опереться.</div>
   </div>
-  <div class="home-wrap">
+  <div id="home-block-qp" class="home-qp">
+    <button class="home-qp-card" onclick="goMood()">
+      <div class="home-qp-card-text">
+        <div class="home-qp-card-title">Быстрый подбор</div>
+        <div class="home-qp-card-sub">если не знаешь, с чего начать</div>
+      </div>
+      <svg class="home-qp-card-illo" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- основной стебель -->
+        <path d="M52 118 Q50 90 48 65 Q47 48 50 32" stroke="#8a7055" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- боковой стебель слева -->
+        <path d="M49 80 Q38 72 30 62" stroke="#8a7055" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- боковой стебель справа -->
+        <path d="M49 60 Q62 52 70 44" stroke="#8a7055" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- маленький стебель с бутоном -->
+        <path d="M49 45 Q42 38 40 28" stroke="#8a7055" stroke-width="1" stroke-linecap="round"/>
+        <!-- большой лист левый нижний -->
+        <path d="M49 80 Q28 78 22 64 Q30 58 40 66 Q46 72 49 80Z" fill="#7a9068" opacity="0.85"/>
+        <path d="M35 71 Q42 74 49 80" stroke="#6b7d62" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+        <!-- большой лист правый -->
+        <path d="M49 60 Q70 55 74 40 Q64 38 56 48 Q51 54 49 60Z" fill="#8fa07e" opacity="0.8"/>
+        <path d="M62 47 Q55 53 49 60" stroke="#6b7d62" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+        <!-- средний лист левый верхний -->
+        <path d="M49 70 Q34 62 32 50 Q40 48 46 58 Q48 64 49 70Z" fill="#6b7d62" opacity="0.7"/>
+        <!-- маленький листик у бутона -->
+        <path d="M44 38 Q36 34 36 26 Q42 28 44 38Z" fill="#8fa07e" opacity="0.75"/>
+        <!-- лепестки цветка -->
+        <ellipse cx="50" cy="22" rx="7" ry="9" fill="#e8c9a0" opacity="0.9" transform="rotate(-20 50 22)"/>
+        <ellipse cx="50" cy="22" rx="7" ry="9" fill="#dbb888" opacity="0.85" transform="rotate(20 50 22)"/>
+        <ellipse cx="50" cy="22" rx="6" ry="9" fill="#e8c9a0" opacity="0.8" transform="rotate(60 50 22)"/>
+        <ellipse cx="50" cy="22" rx="6" ry="9" fill="#dbb888" opacity="0.75" transform="rotate(-60 50 22)"/>
+        <ellipse cx="50" cy="22" rx="6" ry="8" fill="#e8c9a0" opacity="0.8" transform="rotate(100 50 22)"/>
+        <!-- сердцевина цветка -->
+        <circle cx="50" cy="22" r="5.5" fill="#c4956a"/>
+        <circle cx="50" cy="22" r="3.5" fill="#b07d52"/>
+        <circle cx="50" cy="22" r="1.8" fill="#d4a87a"/>
+        <!-- маленькие ягоды -->
+        <circle cx="30" cy="62" r="2.8" fill="#9aab8f"/>
+        <circle cx="25" cy="67" r="2.2" fill="#8a9e7a" opacity="0.8"/>
+        <circle cx="33" cy="68" r="1.8" fill="#7a9068" opacity="0.7"/>
+        <!-- тычинки у цветка -->
+        <circle cx="47" cy="19" r="1" fill="#e8d4b0" opacity="0.9"/>
+        <circle cx="53" cy="19" r="1" fill="#e8d4b0" opacity="0.9"/>
+        <circle cx="50" cy="18" r="1" fill="#e8d4b0" opacity="0.9"/>
+      </svg>
+    </button>
+  </div>
+  <div id="home-block-30" class="home-hero30-wrap">
     <div class="hero-30" onclick="goReset()">
       <div class="hero-30-tag" id="h30-tag">программа · 30 дней</div>
       <div class="hero-30-title" id="h30-title">Перезагрузка <em style="font-style:normal">за</em> 30 дней</div>
@@ -99,23 +143,28 @@
         <div class="hero-30-bar"><div class="hero-30-fill" id="h30-fill" style="width:0%"></div></div>
         <div class="hero-30-day" id="h30-day">0 / 30</div>
       </div>
+      <svg class="hero-30-illo" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- дальние горы -->
+        <path d="M0 72 Q16 36 36 54 Q52 28 70 50 Q84 22 104 44 Q116 20 130 40 L130 110 L0 110Z" fill="#c8b898" opacity="0.30"/>
+        <!-- снежные шапки дальних -->
+        <path d="M70 50 Q74 36 78 44 Q76 47 70 50Z" fill="#f0ebe2" opacity="0.65"/>
+        <path d="M104 44 Q108 28 112 37 Q110 40 104 44Z" fill="#f0ebe2" opacity="0.6"/>
+        <path d="M36 54 Q40 40 44 50 Q42 52 36 54Z" fill="#f0ebe2" opacity="0.55"/>
+        <!-- средние горы -->
+        <path d="M0 84 Q20 56 44 70 Q60 44 82 64 Q96 42 116 60 Q122 50 130 56 L130 110 L0 110Z" fill="#a89070" opacity="0.45"/>
+        <!-- снежные шапки средних -->
+        <path d="M82 64 Q86 50 90 58 Q88 61 82 64Z" fill="#ede6da" opacity="0.6"/>
+        <path d="M44 70 Q48 56 52 64 Q50 67 44 70Z" fill="#ede6da" opacity="0.55"/>
+        <!-- ближние горы -->
+        <path d="M0 96 Q28 70 55 84 Q74 60 96 78 Q110 64 130 74 L130 110 L0 110Z" fill="#8a7458" opacity="0.58"/>
+        <!-- снежные шапки ближних -->
+        <path d="M55 84 Q60 68 65 76 Q62 80 55 84Z" fill="#e8e0d4" opacity="0.5"/>
+        <path d="M96 78 Q100 64 104 72 Q102 75 96 78Z" fill="#e8e0d4" opacity="0.45"/>
+      </svg>
     </div>
+  </div>
+  <div class="home-wrap">
     <div class="home-flow">
-      <div class="home-band">
-        <div class="home-band-head">
-          <div class="home-band-k">быстрый вход</div>
-          <div class="home-band-title">С чего начнём?</div>
-        </div>
-        <button type="button" class="quick-pick" onclick="goMood()">
-          <span class="quick-pick-ico">✨</span>
-          <span class="quick-pick-text">
-            <span class="quick-pick-k">если не знаешь, с чего начать</span>
-            <span class="quick-pick-title">Быстрый подбор</span>
-            <span class="quick-pick-desc">три ответа — одна техника под сейчас</span>
-          </span>
-          <span class="quick-pick-arr">›</span>
-        </button>
-      </div>
       <div class="home-band">
         <button type="button" class="all-sections" id="home-sections-toggle" onclick="toggleHomeSections()" aria-expanded="false">
           <span class="all-sections-ico">🗂️</span>
@@ -129,6 +178,21 @@
         <div class="home-sections-panel" id="home-sections-panel">
           <div id="home-sec-list"></div>
         </div>
+      </div>
+      <div class="home-band home-band-fan">
+        <div class="fan-kicker">или возьми случайную карточку</div>
+        <div class="fan-deck" id="fan-deck">
+          <div class="fan-card fan-c1"><div class="fan-card-back"><span>🌿</span></div></div>
+          <div class="fan-card fan-c2"><div class="fan-card-back"><span>🌿</span></div></div>
+          <div class="fan-card fan-c3" id="fan-card-main" onclick="openFanCard()">
+            <div class="fan-card-ico" id="fan-ico">🌬️</div>
+            <div class="fan-card-name" id="fan-name">Дыхание 4–7–8</div>
+            <div class="fan-card-time" id="fan-time">2 мин</div>
+          </div>
+          <div class="fan-card fan-c4"><div class="fan-card-back"><span>🌿</span></div></div>
+          <div class="fan-card fan-c5"><div class="fan-card-back"><span>🌿</span></div></div>
+        </div>
+        <button class="fan-shuffle-btn" onclick="shuffleFanCard()">⟳ перемешать</button>
       </div>
       <div class="home-band">
         <div class="home-band-head">
@@ -157,6 +221,11 @@
             <span class="sound-em sound-icon" aria-hidden="true">🐦</span>
             <div class="sound-l">Птицы</div>
           </div>
+        </div>
+        <div class="sound-vol-row" id="sound-vol-row">
+          <span class="sound-vol-txt">тише</span>
+          <input type="range" class="sound-vol-slider" id="sound-vol-slider" min="0" max="100" value="20" oninput="setSoundVolume(this.value)">
+          <span class="sound-vol-txt">громче</span>
         </div>
       </div>
     </div>
@@ -316,6 +385,7 @@
   <div class="bn-i" data-nav="sections" onclick="goSec()"><div class="bn-em">▤</div><div class="bn-l">Разделы</div></div>
   <div class="bn-i" data-nav="journal" onclick="goScr('journal')"><div class="bn-em">♡</div><div class="bn-l">Моё</div></div>
 </div>
+<button class="pwa-pill" id="bn-install-btn" onclick="handleInstall()" style="display:none">↓ Добавить</button>
 
 <div class="toast" id="toast"></div>
 
@@ -333,7 +403,7 @@
 <script src="js/app/home.js"></script>
 <script src="js/app/interactions.js"></script>
 <script src="js/app/program.js"></script>
-<script src="js/app/init.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/app/init.js"></script>
 </body>
 </html>
